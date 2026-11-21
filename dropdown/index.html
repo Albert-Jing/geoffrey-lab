@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Geoffrey Jing</title>
+<meta name="robots" content="noindex">
+<meta name="description" content="Currently I'm working on product at Sieve, exploring/scaling robotics data, operations, and research for physical AI.">
+<style>
+  /* Lab: Dropdown. Close to Jürg Lehni's site: the whole page is the name in a thin-ruled bar with a ▼,
+     and everything else lives in the list it drops. Set in Xanh Mono on a calm Joris Kritis grey. */
+  @font-face { font-family: "Xanh Mono"; src: url(fonts/xanh-mono-400-normal.woff2) format("woff2"); font-weight: 400; font-display: swap; }
+  @font-face { font-family: "Xanh Mono"; src: url(fonts/xanh-mono-400-italic.woff2) format("woff2"); font-weight: 400; font-style: italic; font-display: swap; }
+
+  :root { --grey: #d3d3d1; --panel: #dcdcda; --line: #1d1d1c; --text: #1d1d1c; --soft: #5f5f5c; --w: min(920px, calc(100% - 32px)); }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; min-height: 100vh; min-height: 100svh; background: var(--grey); color: var(--text); font-family: "Xanh Mono", ui-monospace, monospace; font-size: 19px; line-height: 1.42; }
+  a { color: inherit; text-decoration: none; }
+
+  nav { position: fixed; top: clamp(16px, 4vh, 32px); left: 50%; transform: translateX(-50%); width: var(--w); z-index: 2; }
+
+  #bar {
+    all: unset; box-sizing: border-box; cursor: pointer; width: 100%;
+    display: flex; justify-content: space-between; align-items: center; gap: 16px;
+    padding: 12px 18px 12px 18px; background: var(--panel); border: 1px solid var(--line);
+    font-size: clamp(28px, 3.6vw, 44px); line-height: 1.1; letter-spacing: .05em;
+    -webkit-tap-highlight-color: transparent;
+  }
+  #bar:focus-visible { outline: 2px solid var(--line); outline-offset: 3px; }
+  .tri { font-size: .55em; transition: transform .25s ease; }
+  nav.open .tri { transform: rotate(180deg); }
+
+  /* the list: drops smoothly, scrolls inside itself if taller than the screen */
+  .menu { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .32s cubic-bezier(.3,.7,.2,1); }
+  nav.open .menu { grid-template-rows: 1fr; }
+  .menu > div { overflow: hidden; }
+  .scroll {
+    max-height: calc(100svh - 140px); overflow-y: auto; overscroll-behavior: contain;
+    background: var(--panel); border: 1px solid var(--line); border-top: 0;
+  }
+  nav:not(.open) .scroll { visibility: hidden; transition: visibility 0s .32s; }
+
+  section { padding: 14px 18px 16px; }
+  section + section { border-top: 1px solid var(--line); }
+  .intro p { margin: 0 0 .8em; max-width: 46em; }
+  .intro p:last-child { margin: 0; }
+  .rows { display: grid; }
+  .rows a, .rows span.item { font-size: clamp(24px, 2.6vw, 32px); letter-spacing: .04em; line-height: 1.32; padding: 0 6px; margin: 0 -6px; }
+  .rows a:hover, .rows a:focus-visible { background: var(--line); color: var(--panel); outline: none; }
+  .rows span.item { color: var(--soft); }
+  dl { margin: 0; display: grid; grid-template-columns: 1fr max-content; gap: 2px 24px; max-width: 34em; }
+  dd { margin: 0; text-align: right; }
+  .foot { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 4px 24px; color: var(--soft); }
+
+  @media (max-width: 600px) {
+    body { font-size: 17px; }
+    #bar { padding: 10px 14px; }
+    section { padding: 12px 14px 14px; }
+    .scroll { max-height: calc(100svh - 110px); }
+  }
+  @media (prefers-reduced-motion: reduce) { .menu, .tri, nav:not(.open) .scroll { transition: none; } }
+</style>
+</head>
+<body>
+<nav id="nav" aria-label="Geoffrey Jing">
+  <button id="bar" aria-expanded="false" aria-controls="menu"><span>Geoffrey Jing</span><span class="tri" aria-hidden="true">▼</span></button>
+  <div class="menu" id="menu">
+    <div><div class="scroll">
+      <section class="intro">
+        <p>I'm Geoffrey, welcome to my site. Currently I'm working on product at Sieve, exploring/scaling robotics data, operations, and research for physical AI. Previously, I worked at Judgment Labs as the founding PM where I built evals and AI infra for agents.</p>
+        <p>Prior to that, I was an AC within Bain PEG in the NYC office. Before that, I interned in product &amp; engineering roles at early-stage startups and Fortune 500 companies, and was a scout/fellow at Soma Capital, .406 Ventures, and V11.</p>
+        <p>In my free time, I like to tinker, eat clean, play guitar, and participate in any activity that makes me sweat intensely.</p>
+      </section>
+      <section class="rows" aria-label="Work">
+        <a href="https://www.sieve.ai/" target="_blank" rel="noreferrer">Sieve</a>
+        <a href="https://judgmentlabs.ai" target="_blank" rel="noreferrer">Judgment Labs</a>
+        <a href="https://www.bain.com/industry-expertise/private-equity/" target="_blank" rel="noreferrer">Bain PEG</a>
+        <a href="https://somacap.com/" target="_blank" rel="noreferrer">Soma Capital</a>
+        <a href="https://www.406ventures.com/" target="_blank" rel="noreferrer">.406 Ventures</a>
+        <span class="item">V11</span>
+      </section>
+      <section aria-label="Stats">
+        <dl>
+          <dt>age</dt><dd class="age">23</dd>
+          <dt>countries</dt><dd>11</dd>
+          <dt>weekly saunas</dt><dd>3</dd>
+          <dt>oz of greek yogurt consumed per week</dt><dd>48</dd>
+        </dl>
+      </section>
+      <section class="rows" aria-label="Elsewhere">
+        <a href="https://www.linkedin.com/in/geoffreyjing/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+        <a href="https://x.com/geoffrey__jing" target="_blank" rel="noreferrer">Twitter ↗</a>
+        <a href="mailto:jinggeoffrey@gmail.com">Email ↗</a>
+      </section>
+      <section class="foot">
+        <span>San Francisco <span id="clock">–:–– PT</span></span>
+        <span><i>— G.J.</i></span>
+        <span>© <span class="year">2026</span> · 37.77° N</span>
+      </section>
+    </div></div>
+  </div>
+</nav>
+
+<script>
+  const nav = document.getElementById('nav'), bar = document.getElementById('bar');
+  let pinned = false, timer = null;
+  function set(open) {
+    clearTimeout(timer);
+    nav.classList.toggle('open', open);
+    bar.setAttribute('aria-expanded', open);
+    if (!open) pinned = false;
+  }
+  const later = (open, ms) => { clearTimeout(timer); timer = setTimeout(() => set(open), ms); };
+
+  // Mouse: hover opens after a short delay, leaving closes after a longer one (no flicker).
+  nav.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') later(true, 140); });
+  nav.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse' && !pinned) later(false, 380); });
+
+  // Click / tap on the bar: open and pin; a second click closes.
+  bar.addEventListener('click', () => {
+    const open = nav.classList.contains('open');
+    if (open && pinned) set(false); else { set(true); pinned = true; }
+  });
+
+  // Keyboard: focusing the bar opens it; leaving the nav with Tab closes it; Esc closes.
+  bar.addEventListener('focus', () => { if (bar.matches(':focus-visible')) set(true); });
+  nav.addEventListener('focusout', e => { if (!nav.contains(e.relatedTarget)) later(false, 60); });
+  addEventListener('keydown', e => { if (e.key === 'Escape' && nav.classList.contains('open')) { set(false); bar.focus({ focusVisible: false }); } });
+
+  // Tap outside closes.
+  addEventListener('pointerdown', e => { if (!nav.contains(e.target)) set(false); });
+
+  function tick() {
+    const d = new Date();
+    document.getElementById('clock').textContent = d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: 'America/Los_Angeles' }) + ' PT';
+    document.querySelector('.year').textContent = d.getFullYear();
+    document.querySelector('.age').textContent = d.getFullYear() - 2003;
+  }
+  tick(); setInterval(tick, 1000);
+</script>
+</body>
+</html>

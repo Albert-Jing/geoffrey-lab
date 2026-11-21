@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Geoffrey Jing</title>
+<meta name="robots" content="noindex">
+<meta name="description" content="Currently I'm working on product at Sieve, exploring/scaling robotics data, operations, and research for physical AI.">
+<style>
+  /* Lab: Fixed about. After Bráulio Amado: Geoffrey's intro fills the screen as a fixed background
+     and wears down (Redaction → 50 → 70 → 100) as photos, stats and links scroll up over it.
+     Every organisation in the intro is a live link. The scrolling layer only takes clicks where
+     something actually covers the text (pointer-events), so the links work whenever you can see them. */
+  @font-face { font-family: "R0";   src: url(fonts/redaction-400-normal.woff2) format("woff2"); font-display: block; }
+  @font-face { font-family: "R50";  src: url(fonts/redaction-50-400-normal.woff2) format("woff2"); font-display: block; }
+  @font-face { font-family: "R70";  src: url(fonts/redaction-70-400-normal.woff2) format("woff2"); font-display: block; }
+  @font-face { font-family: "R100"; src: url(fonts/redaction-100-400-normal.woff2) format("woff2"); font-display: block; }
+  @font-face { font-family: "Fragment Mono"; src: url(fonts/fragment-mono-400-normal.woff2) format("woff2"); font-display: swap; }
+
+  :root { --bg: #e9eae7; --text: #121212; --slab: #ffffff; --hover: #2531c9; --m: clamp(14px, 1.6vw, 24px); }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--text); font-family: "Fragment Mono", ui-monospace, monospace; font-size: 12px; line-height: 1.45; }
+  a { color: inherit; }
+
+  /* the fixed intro: a background layer whose links stay live */
+  #about {
+    position: fixed; inset: 0; padding: var(--m); margin: 0;
+    font-family: "R0", serif; line-height: 1.02; letter-spacing: -0.01em;
+    font-size: 40px; /* replaced by fit() */
+  }
+  #about p { margin: 0; display: inline; }
+  #about p + p::before { content: " ¶ "; }
+  body[data-wear="1"] #about { font-family: "R50", serif; }
+  body[data-wear="2"] #about { font-family: "R70", serif; }
+  body[data-wear="3"] #about { font-family: "R100", serif; }
+
+  /* links in the big text: a faint hairline at rest, solid and blue on hover */
+  #about a {
+    text-decoration: underline; text-decoration-thickness: max(1px, .035em); text-underline-offset: .09em;
+    text-decoration-color: rgba(18,18,18,.22);
+    transition: color .15s, text-decoration-color .15s;
+  }
+  #about a:hover, #about a:focus-visible { color: var(--hover); text-decoration-color: currentColor; outline: none; }
+  @media (hover: none) { #about a { text-decoration-color: rgba(18,18,18,.4); } }
+
+  .meta { position: fixed; left: var(--m); right: var(--m); bottom: var(--m); display: flex; justify-content: space-between; z-index: 1; text-transform: uppercase; letter-spacing: .08em; pointer-events: none; }
+
+  /* the layer that scrolls over it: transparent to clicks except where it has content */
+  .over { position: relative; z-index: 2; padding: 100vh var(--m) 0; display: grid; grid-template-columns: repeat(12, 1fr); gap: 0 var(--m); pointer-events: none; }
+  .item, .end { pointer-events: auto; }
+  .item { margin-bottom: 38vh; align-self: start; }
+  figure { margin: 0; }
+  img { display: block; width: 100%; height: auto; background: #9d9e9a; }
+  figcaption, .cap { display: table; padding: 6px 8px 5px 0; background: var(--bg); text-transform: uppercase; letter-spacing: .08em; }
+  .slab { background: var(--slab); padding: 18px 20px 20px; }
+  .slab dl { margin: 0; display: grid; grid-template-columns: 1fr max-content; gap: 4px 24px; font-size: 13px; }
+  .slab dd { margin: 0; text-align: right; }
+  .slab a { display: block; font-size: 13px; text-decoration: none; padding: 3px 0; }
+  .slab a:hover, .slab a:focus-visible { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+
+  .i1 { grid-column: 8 / span 4; }
+  .i2 { grid-column: 2 / span 5; }
+  .i3 { grid-column: 9 / span 4; }
+  .i4 { grid-column: 3 / span 4; }
+  .i5 { grid-column: 7 / span 5; }
+  .i6 { grid-column: 9 / span 3; }
+  .end { grid-column: 1 / -1; background: var(--text); color: var(--bg); padding: 18px var(--m); margin: 0 calc(var(--m) * -1); display: flex; justify-content: space-between; text-transform: uppercase; letter-spacing: .08em; }
+
+  @media (max-width: 700px) {
+    .over { grid-template-columns: repeat(6, 1fr); }
+    .i1 { grid-column: 2 / -1; } .i2 { grid-column: 1 / span 5; } .i3 { grid-column: 2 / -1; }
+    .i4 { grid-column: 1 / span 5; } .i5 { grid-column: 1 / -1; } .i6 { grid-column: 2 / -1; }
+    .item { margin-bottom: 30vh; }
+    .slab dl { font-size: 12px; }
+  }
+  @media (prefers-reduced-motion: reduce) { #about a { transition: none; } }
+</style>
+</head>
+<body data-wear="0">
+<div id="about"><div class="t" id="t">
+  <p>I'm Geoffrey, welcome to my site. Currently I'm working on product at <a href="https://www.sieve.ai/" target="_blank" rel="noreferrer">Sieve</a>, exploring/scaling robotics data, operations, and research for physical AI. Previously, I worked at <a href="https://judgmentlabs.ai" target="_blank" rel="noreferrer">Judgment Labs</a> as the founding PM where I built evals and AI infra for agents.</p>
+  <p>Prior to that, I was an AC within <a href="https://www.bain.com/industry-expertise/private-equity/" target="_blank" rel="noreferrer">Bain PEG</a> in the NYC office. Before that, I interned in product &amp; engineering roles at early-stage startups and Fortune 500 companies, and was a scout/fellow at <a href="https://somacap.com/" target="_blank" rel="noreferrer">Soma Capital</a>, <a href="https://www.406ventures.com/" target="_blank" rel="noreferrer">.406 Ventures</a>, and V11.</p>
+  <p>In my free time, I like to tinker, eat clean, play guitar, and participate in any activity that makes me sweat intensely.</p>
+</div></div>
+<div class="meta"><span>San Francisco</span><span id="clock">–:–– PT</span></div>
+
+<main class="over">
+  <figure class="item i1">
+    <img src="images/geoffrey-01.jpg" width="1200" height="1500" alt="photo of Geoffrey (placeholder)">
+    <figcaption>Geoffrey Jing — G.J.</figcaption>
+  </figure>
+  <figure class="item i2">
+    <img src="images/geoffrey-02.jpg" width="1800" height="1200" alt="photo of Geoffrey (placeholder)" loading="lazy">
+    <figcaption>Sieve — [Geoffrey: one line about the work at Sieve]</figcaption>
+  </figure>
+  <div class="item i3">
+    <div class="slab">
+      <dl>
+        <dt>age</dt><dd class="age">23</dd>
+        <dt>countries</dt><dd>11</dd>
+        <dt>weekly saunas</dt><dd>3</dd>
+        <dt>oz of greek yogurt consumed per week</dt><dd>48</dd>
+      </dl>
+    </div>
+    <div class="cap">// stats</div>
+  </div>
+  <figure class="item i4">
+    <img src="images/geoffrey-03.jpg" width="1200" height="1500" alt="photo of Geoffrey (placeholder)" loading="lazy">
+    <figcaption>Judgment Labs — [Geoffrey: one line about evals and AI infra for agents]</figcaption>
+  </figure>
+  <figure class="item i5">
+    <img src="images/geoffrey-04.jpg" width="1800" height="1200" alt="photo of Geoffrey (placeholder)" loading="lazy">
+    <figcaption>[Geoffrey: one line about tinkering, guitar or sweating intensely]</figcaption>
+  </figure>
+  <div class="item i6">
+    <div class="slab">
+      <a href="https://www.linkedin.com/in/geoffreyjing/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+      <a href="https://x.com/geoffrey__jing" target="_blank" rel="noreferrer">Twitter ↗</a>
+      <a href="mailto:jinggeoffrey@gmail.com">Email ↗</a>
+    </div>
+    <div class="cap">// elsewhere</div>
+  </div>
+  <footer class="end"><span>© <span class="year">2026</span></span><span>37.77° N</span></footer>
+</main>
+
+<script>
+  const about = document.getElementById('about');
+  const meta = document.querySelector('.meta');
+  // Size the intro so it fills the viewport above the meta line, whatever the screen.
+  function fit() {
+    const t = document.getElementById('t');
+    const pad = parseFloat(getComputedStyle(about).paddingTop);
+    const avail = innerHeight - meta.offsetHeight - pad * 3;
+    let lo = 10, hi = 260;
+    for (let i = 0; i < 20; i++) {
+      const mid = (lo + hi) / 2;
+      about.style.fontSize = mid + 'px';
+      t.getBoundingClientRect().height <= avail ? lo = mid : hi = mid;
+    }
+    about.style.fontSize = lo + 'px';
+  }
+  // Wear the type down as the page scrolls.
+  function wear() {
+    const max = document.documentElement.scrollHeight - innerHeight;
+    const f = max > 0 ? scrollY / max : 0;
+    document.body.dataset.wear = f < 0.12 ? 0 : f < 0.45 ? 1 : f < 0.8 ? 2 : 3;
+  }
+  document.fonts.ready.then(fit);
+  // Refit only when the width changes, so a phone's address bar showing/hiding doesn't make the text jump.
+  let lastW = innerWidth;
+  addEventListener('resize', () => { if (innerWidth !== lastW) { lastW = innerWidth; fit(); } });
+  addEventListener('scroll', wear, { passive: true });
+
+  const clock = document.getElementById('clock');
+  function tick() {
+    const d = new Date();
+    clock.textContent = d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: 'America/Los_Angeles' }) + ' PT';
+    document.querySelector('.year').textContent = d.getFullYear();
+    document.querySelector('.age').textContent = d.getFullYear() - 2003;
+  }
+  tick(); setInterval(tick, 1000);
+</script>
+</body>
+</html>
